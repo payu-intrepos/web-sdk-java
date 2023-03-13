@@ -1,4 +1,4 @@
-[**<- back**](/Users/sumit.pawar/Desktop/Java_SDK/payu-java/src/readme1.md)
+[**<- back**](https://github.com/payu-intrepos/web-sdk-java/blob/main/README.md)
 
 # Downtime Check APIs
 The Downtime Check APIs help you get  the downtime of the Net Banking or card BINs for all the banks which are observing either full downtime or partial downtime.
