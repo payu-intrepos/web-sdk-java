@@ -50,7 +50,7 @@ PayuClient payuClient = PayuClient.init("KEY", "SALT");
 |------------------------------------------------------------------------------------------------------------------| -------------
 | [**Verify_payment**](https://github.com/payu-intrepos/web-sdk-java/blob/main/src/varify_payment.md) ```[async]```          | Provides the details of a transaction
 | [**TransactionDetails**](https://github.com/payu-intrepos/web-sdk-java/blob/main/src/Transaction_dtls.md) ```[async]```    | Provides the details of a transactions for a specfic timeperiod
-| [**ValidateVPA**](https://github.com/payu-intrepos/web-sdk-java/blob/main/src/Transaction_dtls.md) ```[async]```                | Used to validate VPA of a user.
+| [**ValidateVPA**](https://github.com/payu-intrepos/web-sdk-java/blob/main/src/ValidateUPI.md) ```[async]```                | Used to validate VPA of a user.
 | [**RefundTransaction**](https://github.com/payu-intrepos/web-sdk-java/blob/main/src/RefunsApi.md) ```[async]```            | Initiate refunds.
 | [**DowntimeCheck**](https://github.com/payu-intrepos/web-sdk-java/blob/main/src/DowntimeCheck.md) ```[async]```            | Check downtime through bin number.
 | [**InvoiceAPI**](https://github.com/payu-intrepos/web-sdk-java/blob/main/src/InvoiceAPIs.md) ```[async]```                 |  Used to create and expire invoice link.
