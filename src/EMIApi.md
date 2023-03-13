@@ -1,5 +1,5 @@
 
-[**<- back**](/Users/sumit.pawar/Desktop/Java_SDK/payu-java/src/readme1.md)
+[**<- back**](https://github.com/payu-intrepos/web-sdk-java/blob/main/README.md)
 
 # EMI APIs
 The EMI APIs allows you to check the customer’s eligibility for EMI and get the EMI amount according to interest using the following APIS:
