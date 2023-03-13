@@ -56,4 +56,4 @@ PayuClient payuClient = PayuClient.init("KEY", "SALT");
 | [**InvoiceAPI**](/Users/sumit.pawar/Desktop/Java_SDK/payu-java/src/InvoiceAPIs.md) ```[async]```                 |  Used to create and expire invoice link.
 | [**EMI**](/Users/sumit.pawar/Desktop/Java_SDK/payu-java/src/EMIApi.md) ```[async]```                             |  Used for checking the card eligibilty for EMI through the bin number and Check Emi amount according to interest.
 | [**Check_isDomesticapi**](/Users/sumit.pawar/Desktop/Java_SDK/payu-java/src/check_isDomesticapi.md)```[async]``` | The BIN API or check_isDomestic API is used to detect whether a particular BIN number is international or domestic.
-| [**CheckoutDetails**](/Users/sumit.pawar/Desktop/Java_SDK/payu-java/src/CheckoutDetails.md) ```[async]```        |  The get_checkout_details API is a generic API using which they can get information when you create the custom checkout-pages.
+| [**CheckoutDetails**](https://github.com/payu-intrepos/web-sdk-java/blob/main/src/CheckoutDetails.md) ```[async]```        |  The get_checkout_details API is a generic API using which they can get information when you create the custom checkout-pages.
