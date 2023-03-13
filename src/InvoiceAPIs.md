@@ -1,4 +1,4 @@
-[**<- back**](/Users/sumit.pawar/Desktop/Java_SDK/payu-java/src/readme1.md)
+[**<- back**](https://github.com/payu-intrepos/web-sdk-java/blob/main/README.md)
 
 # Invoice APIs
 Create an email professional invoices so that your customers, wherever they are, can pay you faster. Use the PayU Invoicing solution to send or manage invoices.
