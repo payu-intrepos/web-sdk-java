@@ -48,12 +48,12 @@ PayuClient payuClient = PayuClient.init("KEY", "SALT");
 ## Documentation for various Methods
  Method                                                                                                           |  Description
 |------------------------------------------------------------------------------------------------------------------| -------------
-| [**Verify_payment**](/Users/sumit.pawar/Desktop/Java_SDK/payu-java/src/varify_payment.md) ```[async]```          | Provides the details of a transaction
-| [**TransactionDetails**](/Users/sumit.pawar/Desktop/Java_SDK/payu-java/src/Transaction_dtls.md) ```[async]```    | Provides the details of a transactions for a specfic timeperiod
-| [**ValidateVPA**](/Users/sumit.pawar/Desktop/Java_SDK/payu-java/src/ValidateUPI.md) ```[async]```                | Used to validate VPA of a user.
-| [**RefundTransaction**](/Users/sumit.pawar/Desktop/Java_SDK/payu-java/src/RefunsApi.md) ```[async]```            | Initiate refunds.
-| [**DowntimeCheck**](/Users/sumit.pawar/Desktop/Java_SDK/payu-java/src/DowntimeCheck.md) ```[async]```            | Check downtime through bin number.
-| [**InvoiceAPI**](/Users/sumit.pawar/Desktop/Java_SDK/payu-java/src/InvoiceAPIs.md) ```[async]```                 |  Used to create and expire invoice link.
-| [**EMI**](/Users/sumit.pawar/Desktop/Java_SDK/payu-java/src/EMIApi.md) ```[async]```                             |  Used for checking the card eligibilty for EMI through the bin number and Check Emi amount according to interest.
-| [**Check_isDomesticapi**](/Users/sumit.pawar/Desktop/Java_SDK/payu-java/src/check_isDomesticapi.md)```[async]``` | The BIN API or check_isDomestic API is used to detect whether a particular BIN number is international or domestic.
+| [**Verify_payment**](https://github.com/payu-intrepos/web-sdk-java/blob/main/src/varify_payment.md) ```[async]```          | Provides the details of a transaction
+| [**TransactionDetails**](https://github.com/payu-intrepos/web-sdk-java/blob/main/src/Transaction_dtls.md) ```[async]```    | Provides the details of a transactions for a specfic timeperiod
+| [**ValidateVPA**](https://github.com/payu-intrepos/web-sdk-java/edit/main/src/ValidateUPI.md) ```[async]```                | Used to validate VPA of a user.
+| [**RefundTransaction**](https://github.com/payu-intrepos/web-sdk-java/blob/main/src/RefunsApi.md) ```[async]```            | Initiate refunds.
+| [**DowntimeCheck**](https://github.com/payu-intrepos/web-sdk-java/blob/main/src/DowntimeCheck.md) ```[async]```            | Check downtime through bin number.
+| [**InvoiceAPI**](https://github.com/payu-intrepos/web-sdk-java/blob/main/src/InvoiceAPIs.md) ```[async]```                 |  Used to create and expire invoice link.
+| [**EMI**](https://github.com/payu-intrepos/web-sdk-java/blob/main/src/EMIApi.md) ```[async]```                             |  Used for checking the card eligibilty for EMI through the bin number and Check Emi amount according to interest.
+| [**Check_isDomesticapi**](https://github.com/payu-intrepos/web-sdk-java/blob/main/src/check_isDomesticapi.md)```[async]``` | The BIN API or check_isDomestic API is used to detect whether a particular BIN number is international or domestic.
 | [**CheckoutDetails**](https://github.com/payu-intrepos/web-sdk-java/blob/main/src/CheckoutDetails.md) ```[async]```        |  The get_checkout_details API is a generic API using which they can get information when you create the custom checkout-pages.
