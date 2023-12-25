@@ -7,16 +7,6 @@ The EMI APIs allows you to check the customer’s eligibility for EMI and get th
 * eligibleBinsForEMI
 * getEmiAmountAccordingToInterest
 
-
-
-* **URL**
-
-         -Test        https://test.payu.in/merchant/postservice.php?form=2
-
-         -Production	https://info.payu.in/merchant/postservice.php?form=2
-
-
-
 * **Method:**
 
          POST

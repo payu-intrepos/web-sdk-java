@@ -10,16 +10,6 @@ This section describes how to use the following APIs:
 * getNetbankingStatus
 * getIssuingBankStatus
 
-
-
-* **URL**
-
-         -Test        https://test.payu.in/merchant/postservice.php?form=2
-
-         -Production	https://info.payu.in/merchant/postservice.php?form=2
-
-
-
 * **Method:**
 
          POST
