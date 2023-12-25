@@ -1,119 +1,36 @@
 
 package com.payu;
 
-import java.net.URL;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 import okhttp3.*;
 
-public class Invoice
-{
+public class Invoice extends ApiClient {
 
-    public String key;
-    public String var1;
+    static final String COMMAND_CREATE = "create_invoice";
+    static final String COMMAND_EXPIRE = "expire_invoice";
 
-    public String hash;
-    public String environment;
-    private String returnResponse;
-
-    public String Get_Create_invoic() {
-        try {
-
-            URL url = new URL("https://secure.payu.in/merchant/postservice.php?form=2");
-            if (this.environment.equalsIgnoreCase("Test")) {
-                url = new URL("https://test.payu.in/merchant/postservice.php?form=2");
-//            System.out.println("This is test environment");
-
-            } else if (this.environment.equalsIgnoreCase("Production")) {
-                url = new URL("https://secure.payu.in/merchant/postservice.php?form=2");
-//            System.out.println("This is Production environment");
-
-            }
-
-
-            Map<String, String> params = new LinkedHashMap<String, String>();
-            params.put("key", this.key);
-            params.put("command", "create_invoice");
-            params.put("var1", this.var1);
-            params.put("hash", this.hash);
-            StringBuilder postData = new StringBuilder();
-            if (this.key == null) {
-                throw new PayuException("key is mandatory param, please pass your merchant key");
-            } else if (this.var1 == null) {
-                throw new PayuException("var1 is mandatory param, please pass var1 for the API");
-            }
-
-            OkHttpClient client = new OkHttpClient().newBuilder()
-                .build();
-            MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
-            RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                .addFormDataPart("key",this.key)
-                .addFormDataPart("command","create_invoice")
-                .addFormDataPart("var1",this.var1)
-                .addFormDataPart("hash",this.hash)
-                .build();
-            Request request = new Request.Builder()
-                .url(url)
-                .method("POST", body)
-                .build();
-            Response response = client.newCall(request).execute();
-            returnResponse = response.body().string();
-            return returnResponse;
-        } catch (Exception e) {
-            return e.toString();
-        }
-        //  return null;
+    public Invoice(String key, String salt, String env) {
+        super(key, salt, env);
     }
 
-    public String Get_expire_invoic() {
-
-        try {
-
-            URL url = new URL("https://secure.payu.in/merchant/postservice.php?form=2");
-            if (this.environment.equalsIgnoreCase("Test")) {
-                url = new URL("https://test.payu.in/merchant/postservice.php?form=2");
-//            System.out.println("This is test environment");
-
-            } else if (this.environment.equalsIgnoreCase("Production")) {
-                url = new URL("https://secure.payu.in/merchant/postservice.php?form=2");
-//            System.out.println("This is Production environment");
-
-            }
-
-
-            Map<String, String> params = new LinkedHashMap<String, String>();
-            params.put("key", this.key);
-            params.put("command", "expire_invoice");
-            params.put("var1", this.var1);
-            params.put("hash", this.hash);
-            StringBuilder postData = new StringBuilder();
-            if (this.key == null) {
-                throw new PayuException("key is mandatory param, please pass your merchant key");
-            } else if (this.var1 == null) {
-                throw new PayuException("var1 is mandatory param, please pass var1 for the API");
-            }
-
-            OkHttpClient client = new OkHttpClient().newBuilder()
-                .build();
-            MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
-            RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                .addFormDataPart("key",this.key)
-                .addFormDataPart("command","expire_invoice")
-                .addFormDataPart("var1",this.var1)
-                .addFormDataPart("hash",this.hash)
-                .build();
-            Request request = new Request.Builder()
-                .url(url)
-                .method("POST", body)
-                .build();
-            Response response = client.newCall(request).execute();
-            returnResponse = response.body().string();
-            return returnResponse;
-        } catch (Exception e) {
-            return e.toString();
-        }
-        //  return null;
-
+    public String getCreateInvoiceResponse(HashMap<String, String> payload) {
+        String hash = hasher.generateApiHash(COMMAND_CREATE, payload.toString());
+        Map<String, String> params = Map.of(
+                "key", key,
+                "command", COMMAND_CREATE,
+                "var1", payload.toString(),
+                "hash", hash);
+        return apiRequest(params);
+    }
+    public String getExpireInvoiceResponse(String txnid) {
+        String hash = hasher.generateApiHash(COMMAND_EXPIRE, txnid);
+        Map<String, String> params = Map.of(
+                "key", key,
+                "command", COMMAND_EXPIRE,
+                "var1", txnid,
+                "hash", hash);
+        return apiRequest(params);
     }
 }
 

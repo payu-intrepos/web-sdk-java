@@ -1,6 +1,6 @@
 package com.payu;
 
-public class HasherParams {
+public class PaymentParams {
   private String txnId;
   private String amount;
   private String productInfo;
@@ -13,7 +13,7 @@ public class HasherParams {
   private String udf5;
   private String additionalCharges;
 
-  private HasherParams(Builder builder) {
+  private PaymentParams(Builder builder) {
     this.txnId = builder.txnId;
     this.amount = builder.amount;
     this.productInfo = builder.productInfo;
@@ -218,7 +218,7 @@ public class HasherParams {
       return this;
     }
 
-    public HasherParams build() {
+    public PaymentParams build() {
       if (this.txnId == null) {
         throw new PayuException("txnId is mandatory param. set is using .setTxnId");
       }
@@ -234,7 +234,7 @@ public class HasherParams {
       if (this.email == null) {
         throw new PayuException("email is mandatory param. set is using .setEmail");
       }
-      return new HasherParams(this);
+      return new PaymentParams(this);
     }
   }
 }

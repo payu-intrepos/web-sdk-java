@@ -7,12 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * Unit test for simple App.
  */
-class PayuTest {
-    PayuClient payuClient = PayuClient.init("bjg$121", "vhgvs75");
-    PayuClient payuClient2 = PayuClient.init("bjg$121", "vhgvs75");
-    /**
-     * Rigorous Test.
-     */
+class PayuClientTest {
+    PayuClient payuClient = PayuClient.init("bjg$121", "vhgvs75", PayuClient.Environment.TEST);
+    PayuClient payuClient2 = PayuClient.init("fgsdf", "vhgddfgvs75", PayuClient.Environment.TEST);
     @Test
     void testPayU() {
       assertTrue(payuClient.hasher instanceof Hasher);

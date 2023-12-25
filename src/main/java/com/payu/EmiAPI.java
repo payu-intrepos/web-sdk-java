@@ -1,9 +1,5 @@
 package com.payu;
 
-import okhttp3.*;
-
-import java.net.URL;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class EmiAPI extends ApiClient {
@@ -25,13 +21,13 @@ public class EmiAPI extends ApiClient {
                 "hash", hash);
         return apiRequest(params);
     }
-
-    public String getEmiAmountAccordingToInterest(String bankCode) {
-        String hash = hasher.generateApiHash(COMMAND_IN, bankCode);
+    public String getEmiAmountAccordingToInterestResponse(Number amount) {
+        String amountStr = String.valueOf(amount);
+        String hash = hasher.generateApiHash(COMMAND_IN, amountStr);
         Map<String, String> params = Map.of(
                 "key", key,
                 "command", COMMAND_IN,
-                "var1", bankCode,
+                "var1", amountStr,
                 "hash", hash);
         return apiRequest(params);
     }

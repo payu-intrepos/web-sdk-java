@@ -1,89 +1,74 @@
 package com.payu;
 
 import java.security.MessageDigest;
-import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
 
 /**
  * Hasher class
  */
-public class Hasher extends BasePayu {
-
+public class Hasher {
+    private String key;
+    private String salt;
+    
     public Hasher(String key, String salt) {
-        super(key, salt);
+       this.key = key;
+       this.salt = salt;
     }
 
-    private String digestHash(String str) {
-        StringBuilder hash = new StringBuilder();
+    public String calculateDigest(String str) {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance(Constants.HASH_ALGO);
             messageDigest.update(str.getBytes(StandardCharsets.UTF_8));
             byte[] mdbytes = messageDigest.digest();
+
+            StringBuilder hash = new StringBuilder();
             for (byte hashByte : mdbytes) {
                 hash.append(Integer.toString((hashByte & 0xff) + 0x100, 16).substring(1));
             }
+
             return hash.toString();
         } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Hash algorithm not available: " + Constants.HASH_ALGO, e);
         }
     }
 
-    /**
-     * Generate payment hash
-     *
-     * @param params   HasherParams obj containing transaction params
-     * @return         hashstring
-     */
-    public String generateHash(HasherParams params) {
+    public String generatePaymentHash(HashMap params) {
         if (params == null) {
             throw new PayuException("generateHash parameter should not be null");
         }
-        String udf1 = params.getUdf1();
-        String udf2 = params.getUdf2();
-        String udf3 = params.getUdf3();
-        String udf4 = params.getUdf4();
-        String udf5 = params.getUdf5();
         String template = "%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s||||||%s";
-        String str = String.format(template, key, params.getTxnId(), params.getAmount(), params.getProductInfo(), params.getFirstName(), params.getEmail(), udf1, udf2, udf3, udf4, udf5, salt);
-        return digestHash(str);
+        String str = String.format(template, key, params.getOrDefault("txnid",""), params.getOrDefault("amount",""),
+                params.getOrDefault("productinfo",""), params.getOrDefault("firstname",""), params.getOrDefault("email",""),
+                params.getOrDefault("udf1",""), params.getOrDefault("udf2",""), params.getOrDefault("udf3",""), params.getOrDefault("udf4",""), params.getOrDefault("udf5",""), salt);
+        return calculateDigest(str);
     }
 
-    public String yourKey()
-    {
-        return this.key;
-    }
-    public String yourSalt()
-    {
-        return this.salt;
-    }
-
-    /**
-     * Validate payment hash
-     *
-     * @param reveseHash   reverse hash string received from payu on checkout
-     * @param params       transaction status recieved from payu on checkout
-     * @param params       HasherParams obj containing transaction params
-     * @return             true if valid hash else false
-     */
-    public boolean validateHash(String reveseHash, String status, HasherParams params) {
-        if (reveseHash ==null || status == null || params == null) {
+    public boolean validateHash(String receivedHash, String status, HashMap params) {
+        if (receivedHash == null || status == null || params == null) {
             throw new PayuException("validateHash parameters should not be null");
         }
-        String udf1 = params.getUdf1();
-        String udf2 = params.getUdf2();
-        String udf3 = params.getUdf3();
-        String udf4 = params.getUdf4();
-        String udf5 = params.getUdf5();
-        String additionalCharges = params.getAdditionalCharges();
+
         String template = "%s|%s||||||%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s";
-        String str = String.format(template, salt, status, udf1, udf2, udf3, udf4, udf5, params.getEmail(), params.getFirstName(), params.getProductInfo(), params.getAmount(), params.getTxnId(), key);
-        if (additionalCharges != null) {
-            StringBuilder string = new StringBuilder(additionalCharges);
-            string.append("|");
-            string.append(str);
-            str = string.toString();
+        String str = String.format(template, salt, status, params.getOrDefault("udf5",""), params.getOrDefault("udf4",""),
+                params.getOrDefault("udf3",""), params.getOrDefault("udf2",""), params.getOrDefault("udf1",""), params.getOrDefault("email",""),
+                params.getOrDefault("firstname",""), params.getOrDefault("productinfo",""), params.getOrDefault("amount",""),
+                params.getOrDefault("txnid",""), key);
+
+        if (params.get("additionalCharges") != null) {
+            str = params.get("additionalCharges") + "|" + str;
         }
-        return digestHash(str).equals(reveseHash);
+
+        return calculateDigest(str).equals(receivedHash);
+    }
+
+    public String generateApiHash(String command, String var1) {
+        if (command == null || var1 == null) {
+            throw new PayuException("parameters should not be null");
+        }
+        String template = "%s|%s|%s|%s";
+        String str = String.format(template, key, command, var1, salt);
+        return calculateDigest(str);
     }
 }
