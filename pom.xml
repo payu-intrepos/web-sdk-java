@@ -4,9 +4,24 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.example</groupId>
-  <artifactId>TestNewPostRequest</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <groupId>in.payu.websdk</groupId>
+  <artifactId>payu-websdk</artifactId>
+  <version>1.0.0</version>
+  <packaging>jar</packaging>
+  
+
+  <name>web-sdk-java</name>
+  <description>Official java SDK for the Payu India</description>
+  <url>https://github.com/payu-intrepos/web-sdk-java</url>
+
+  <developers>
+    <developer>
+      <name>PayU</name>
+      <email>integration@payu.in</email>
+      <organization>PayU</organization>
+      <organizationUrl>https://www.payu.in</organizationUrl>
+    </developer>
+  </developers>
 
   <properties>
     <maven.compiler.source>11</maven.compiler.source>
