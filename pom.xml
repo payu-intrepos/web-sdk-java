@@ -11,7 +11,7 @@
   
 
   <name>web-sdk-java</name>
-  <description>Official java SDK for the Payu India</description>
+  <description>Official Java web SDK for Payu India APIs</description>
   <url>https://github.com/payu-intrepos/web-sdk-java</url>
 
   <developers>
@@ -52,4 +52,11 @@
       <version>20231013</version>
     </dependency>
   </dependencies>
+<distributionManagement>
+   <repository>
+     <id>github</id>
+     <name>GitHub OWNER Apache Maven Packages</name>
+     <url>https://maven.pkg.github.com/payu-intrepos/web-sdk-java</url>
+   </repository>
+</distributionManagement>
 </project>
