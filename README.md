@@ -18,8 +18,8 @@ Following features are supported in the PayU JAVA web SDK:
 3. [Documentation for various Methods](#documentation-for-various-methods)
 ## Getting Started
 Please follow the [installation](#installation) instruction and execute the following JS code for creating the instance of PayU Object:
-```javascript
-PayuClient payuClient = PayuClient.init("KEY", "SALT");
+```java
+PayuClient payuClient = PayuClient.init("KEY", "SALT", PayuClient.Environment.TEST);
 // Need to set merchant key and salt
 ```
 ## Installation
