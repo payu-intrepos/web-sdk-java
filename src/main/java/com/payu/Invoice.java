@@ -1,11 +1,10 @@
 
 package com.payu;
 
-import java.util.HashMap;
 import java.util.Map;
-import okhttp3.*;
+import org.json.JSONObject;
 
-public class Invoice extends ApiClient {
+class Invoice extends ApiClient {
 
     static final String COMMAND_CREATE = "create_invoice";
     static final String COMMAND_EXPIRE = "expire_invoice";
@@ -14,7 +13,7 @@ public class Invoice extends ApiClient {
         super(key, salt, env);
     }
 
-    public String getCreateInvoiceResponse(HashMap<String, String> payload) {
+    public String getCreateInvoiceResponse(JSONObject payload) {
         String hash = hasher.generateApiHash(COMMAND_CREATE, payload.toString());
         Map<String, String> params = Map.of(
                 "key", key,

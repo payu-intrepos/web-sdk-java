@@ -1,21 +1,18 @@
 package com.payu;
 
 import java.util.Map;
-
-public class EmiAPI extends ApiClient {
-
-    private final String COMMAND_BIN = "eligibleBinsForEMI";
-    private final String COMMAND_IN = "getEmiAmountAccordingToInterest";
+class EmiAPI extends ApiClient {
 
     public EmiAPI(String key, String salt, String env) {
         super(key, salt, env);
     }
 
     public String getEligibleBinsForEMIResponse(Integer bin) {
-        String hash = hasher.generateApiHash(COMMAND_BIN, "bin");
+        String COMMAND = "eligibleBinsForEMI";
+        String hash = hasher.generateApiHash(COMMAND, "bin");
         Map<String, String> params = Map.of(
                 "key", key,
-                "command", COMMAND_BIN,
+                "command", COMMAND,
                 "var1", "bin",
                 "var2", String.valueOf(bin),
                 "hash", hash);
@@ -23,10 +20,11 @@ public class EmiAPI extends ApiClient {
     }
     public String getEmiAmountAccordingToInterestResponse(Number amount) {
         String amountStr = String.valueOf(amount);
-        String hash = hasher.generateApiHash(COMMAND_IN, amountStr);
+        String COMMAND = "getEmiAmountAccordingToInterest";
+        String hash = hasher.generateApiHash(COMMAND, amountStr);
         Map<String, String> params = Map.of(
                 "key", key,
-                "command", COMMAND_IN,
+                "command", COMMAND,
                 "var1", amountStr,
                 "hash", hash);
         return apiRequest(params);

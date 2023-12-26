@@ -1,8 +1,6 @@
 package com.payu;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.util.HashMap;
+import org.json.JSONObject;
 
 public class PayuClient{
 
@@ -47,7 +45,7 @@ public class PayuClient{
     return instance;
   }
 
-  public String generatePaymentForm(HashMap params){
+  public String generatePaymentForm(JSONObject params){
     return paymentClient.form(params);
   }
   public String verifyPayment(String txnid){
@@ -79,7 +77,7 @@ public class PayuClient{
     return checkIsDomesticClient.getCheckIsDomesticResponse(bin);
   }
 
-  public String createInvoice(HashMap params){
+  public String createInvoice(JSONObject params){
     return invoiceClient.getCreateInvoiceResponse(params);
   }
 

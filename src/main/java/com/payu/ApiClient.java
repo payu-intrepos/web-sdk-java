@@ -9,7 +9,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
-public class ApiClient {
+class ApiClient {
 
   public Hasher hasher;
 
@@ -31,9 +31,9 @@ public class ApiClient {
       for (Map.Entry<String, String> entry : params.entrySet()) {
         if (postData.length() != 0)
           postData.append('&');
-        postData.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
+        postData.append(URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8));
         postData.append('=');
-        postData.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
+        postData.append(URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8));
       }
 
       byte[] postDataBytes = postData.toString().getBytes(StandardCharsets.UTF_8);

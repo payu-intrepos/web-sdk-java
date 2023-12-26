@@ -1,7 +1,6 @@
 package com.payu;
+import org.json.JSONObject;
 import org.junit.jupiter.api.*;
-
-import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -10,7 +9,7 @@ public class PaymentTest {
     PayuClient payuClient = PayuClient.init("QyT13U", "UnJ0FGO0kt3dUgnHo9Xgwi0lpipBV0hB", PayuClient.Environment.TEST);
     @Test
     void testgenratehtml() {
-        HashMap h = new HashMap();
+        JSONObject h = new JSONObject();
         h.put("key", "QyT13U");
         h.put("txnid", "345345");
         h.put("amount", "10.00");

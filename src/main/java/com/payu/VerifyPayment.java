@@ -2,7 +2,7 @@ package com.payu;
 
 import java.util.Map;
 
-public class VerifyPayment extends ApiClient {
+class VerifyPayment extends ApiClient {
 
     static final String COMMAND = "verify_payment";
 

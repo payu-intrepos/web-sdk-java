@@ -2,12 +2,13 @@ package com.payu;
 
 import org.jetbrains.annotations.NotNull;
 
+import org.json.JSONObject;
+
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-public class Payment extends ApiClient {
+class Payment extends ApiClient {
 
     public Payment(String key, String salt, String env) {
         super(key, salt, env);
@@ -17,7 +18,8 @@ public class Payment extends ApiClient {
         return "<input hidden type='text' name='" + str1 + "' value='" + val1 + "'/>";
     }
 
-    public String form(@NotNull HashMap<String, String> map) {
+    public String form(@NotNull JSONObject params) {
+        HashMap map = new HashMap(params.toMap());
         if(map.isEmpty()) throw new PayuException("txnId is mandatory param.");
         if (map.get("txnid") == null) {
             throw new PayuException("txnId is mandatory param.");
@@ -36,7 +38,7 @@ public class Payment extends ApiClient {
         }
         if (map.get("surl") == null) {
            throw new PayuException("email is mandatory param.");
-        } 
+        }
         map.put("key", key);
         map.put("hash", hasher.generatePaymentHash(map));
         StringBuilder form = new StringBuilder();

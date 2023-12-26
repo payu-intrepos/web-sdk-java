@@ -1,7 +1,7 @@
 package com.payu;
 
 import java.util.Map;
-public class TransactionDetails extends ApiClient {
+class TransactionDetails extends ApiClient {
     static final String COMMAND = "get_Transaction_Details";
 
     public TransactionDetails(String key, String salt, String env) {

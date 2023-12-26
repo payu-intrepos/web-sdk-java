@@ -1,19 +1,14 @@
 package com.payu;
 
-import okhttp3.*;
-
-import java.net.URL;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class DowntimeCheckAPI extends ApiClient{
-    private final String COMMAND_NB = "getNetbankingStatus";
-    private final String COMMAND_IB = "getIssuingBankStatus";
+class DowntimeCheckAPI extends ApiClient{
     private String returnResponse;
     public DowntimeCheckAPI(String key, String salt, String env) {
         super(key, salt, env);
     }
     public String getNetbankingStatusResponse(String bankCode) {
+        String COMMAND_NB = "getNetbankingStatus";
         String hash = hasher.generateApiHash(COMMAND_NB, bankCode);
         Map<String, String> params = Map.of(
                 "key", key,
@@ -25,6 +20,7 @@ public class DowntimeCheckAPI extends ApiClient{
 
     public String getIssuingBankStatusResponse(Integer bin) {
         String binStr = String.valueOf(bin);
+        String COMMAND_IB = "getIssuingBankStatus";
         String hash = hasher.generateApiHash(COMMAND_IB, binStr);
         Map<String, String> params = Map.of(
                 "key", key,

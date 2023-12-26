@@ -1,7 +1,7 @@
 package com.payu;
 
 import java.util.Map;
-public class Refund extends ApiClient {
+class Refund extends ApiClient {
     static final String COMMAND = "cancel_refund_transaction";
     public Refund(String key, String salt, String env) {
         super(key, salt, env);
