@@ -18,8 +18,8 @@ Following features are supported in the PayU JAVA web SDK:
 3. [Documentation for various Methods](#documentation-for-various-methods)
 ## Getting Started
 Please follow the [installation](#installation) instruction and execute the following JS code for creating the instance of PayU Object:
-```javascript
-PayuClient payuClient = PayuClient.init("KEY", "SALT");
+```java
+PayuClient payuClient = PayuClient.init("KEY", "SALT", PayuClient.Environment.TEST);
 // Need to set merchant key and salt
 ```
 ## Installation
@@ -48,12 +48,15 @@ PayuClient payuClient = PayuClient.init("KEY", "SALT");
 ## Documentation for various Methods
  Method                                                                                                           |  Description
 |------------------------------------------------------------------------------------------------------------------| -------------
-| [**Verify_payment**](https://github.com/payu-intrepos/web-sdk-java/blob/main/src/varify_payment.md) ```[async]```          | Provides the details of a transaction
-| [**TransactionDetails**](https://github.com/payu-intrepos/web-sdk-java/blob/main/src/Transaction_dtls.md) ```[async]```    | Provides the details of a transactions for a specfic timeperiod
-| [**ValidateVPA**](https://github.com/payu-intrepos/web-sdk-java/blob/main/src/ValidateUPI.md) ```[async]```                | Used to validate VPA of a user.
-| [**RefundTransaction**](https://github.com/payu-intrepos/web-sdk-java/blob/main/src/RefunsApi.md) ```[async]```            | Initiate refunds.
-| [**DowntimeCheck**](https://github.com/payu-intrepos/web-sdk-java/blob/main/src/DowntimeCheck.md) ```[async]```            | Check downtime through bin number.
-| [**InvoiceAPI**](https://github.com/payu-intrepos/web-sdk-java/blob/main/src/InvoiceAPIs.md) ```[async]```                 |  Used to create and expire invoice link.
-| [**EMI**](https://github.com/payu-intrepos/web-sdk-java/blob/main/src/EMIApi.md) ```[async]```                             |  Used for checking the card eligibilty for EMI through the bin number and Check Emi amount according to interest.
-| [**Check_isDomesticapi**](https://github.com/payu-intrepos/web-sdk-java/blob/main/src/check_isDomesticapi.md)```[async]``` | The BIN API or check_isDomestic API is used to detect whether a particular BIN number is international or domestic.
-| [**CheckoutDetails**](https://github.com/payu-intrepos/web-sdk-java/blob/main/src/CheckoutDetails.md) ```[async]```        |  The get_checkout_details API is a generic API using which they can get information when you create the custom checkout-pages.
+| [**generatePaymentForm**](https://github.com/payu-intrepos/web-sdk-java/blob/main/docs/generatePaymentForm.md) | Generate html form for initating payment from frontend.
+| [**verifyPayment**](https://github.com/payu-intrepos/web-sdk-java/blob/main/docs/verifyPayment.md) | Provides the details of a transaction
+| [**getTransactionDetails**](https://github.com/payu-intrepos/web-sdk-java/blob/main/docs/getTransactionDetails.md)| Provides the details of a transactions for a specfic timeperiod
+| [**validateVPA**](https://github.com/payu-intrepos/web-sdk-java/blob/main/docs/validateVPA.md)       | Used to validate VPA of a user.
+| [**cancelRefundTransaction**](https://github.com/payu-intrepos/web-sdk-java/blob/main/docs/cancelRefundTransaction.md)   | Initiate refunds.
+| [**getIssuingBankStatus**](https://github.com/payu-intrepos/web-sdk-java/blob/main/docs/getIssuingBankStatus.md)   | Check downtime through bin number.
+| [**getNetbankingStatus**](https://github.com/payu-intrepos/web-sdk-java/blob/main/docs/getNetbankingStatus.md)   | Check downtime through bankCode ( Netbanking ).
+| [**createInvoice**](https://github.com/payu-intrepos/web-sdk-java/blob/main/docs/createInvoice.md)        |  Used to create invoice link.
+| [**expireInvoice**](https://github.com/payu-intrepos/web-sdk-java/blob/main/docs/expireInvoice.md)        |  Used to expire invoice link.
+| [**eligibleBinsForEMI**](https://github.com/payu-intrepos/web-sdk-java/blob/main/docs/eligibleBinsForEMI.md)                    |  Used for checking the card eligibilty for CC EMI through the bin number.
+| [**getEmiAmountAccordingToInterest**](https://github.com/payu-intrepos/web-sdk-java/blob/main/docs/getEmiAmountAccordingToInterest.md)                    |  Used for checking Emi amount according to interest.
+| [**checkIsDomestic**](https://github.com/payu-intrepos/web-sdk-java/blob/main/docs/checkIsDomestic.md)| The BIN API or check_isDomestic API is used to detect whether a particular BIN number is international or domestic.

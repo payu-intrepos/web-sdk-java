@@ -1,37 +1,54 @@
 package com.payu;
 
-import okhttp3.*;
+import org.jetbrains.annotations.NotNull;
 
-import java.io.File;
-import java.net.URL;
+import org.json.JSONObject;
+
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-public class Payment {
+class Payment extends ApiClient {
 
+    public Payment(String key, String salt, String env) {
+        super(key, salt, env);
+    }
 
-
-    public static String comp(String str1,String val1) {
+    public String comp(String str1, String val1) {
         return "<input hidden type='text' name='" + str1 + "' value='" + val1 + "'/>";
     }
 
-
-    public static String form(HashMap map){
-        Set set=map.entrySet();//Converting to Set so that we can traverse
-        Iterator itr=set.iterator();
-        System.out.println("<form name=\"payment_post\" id=\"payment_post\" action=\"https://test.payu.in/_payment\" method=\"post\">");
-        while(itr.hasNext()){
-            Map.Entry entry=(Map.Entry)itr.next();
-            System.out.println(comp(entry.getKey().toString(),entry.getValue().toString()));
+    public String form(@NotNull JSONObject params) {
+        HashMap map = new HashMap(params.toMap());
+        if(map.isEmpty()) throw new PayuException("txnId is mandatory param.");
+        if (map.get("txnid") == null) {
+            throw new PayuException("txnId is mandatory param.");
         }
-        System.out.println("</form><script type='text/javascript'>\n" +
-            "                            window.onload=function(){\n" +
-            "                                document.forms['payment_post'].submit();\n" +
-            "                            }\n" +
-            "                        </script>");
-        return "sdfs";
+        if (map.get("amount") == null) {
+            throw new PayuException("amount is mandatory param.");
+        }
+        if (map.get("productinfo") == null) {
+            throw new PayuException("productInfo is mandatory param.");
+        }
+        if (map.get("firstname") == null) {
+            throw new PayuException("firstName is mandatory param.");
+        }
+        if (map.get("email") == null) {
+           throw new PayuException("email is mandatory param.");
+        }
+        if (map.get("surl") == null) {
+           throw new PayuException("email is mandatory param.");
+        }
+        map.put("key", key);
+        map.put("hash", hasher.generatePaymentHash(map));
+        StringBuilder form = new StringBuilder();
+        form.append("<form name='payment_post' id='payment_post' action='").append(getPaymentUrl()).append("' method='post'>");
+        Set<Map.Entry<String, String>> set = map.entrySet();// Converting to Set so that we can traverse
+        for (Map.Entry<String, String> stringStringEntry : set) {
+            form.append(comp(((Map.Entry) stringStringEntry).getKey().toString(), ((Map.Entry) stringStringEntry).getValue().toString()));
+        }
+        form.append(
+                "</form><script type='text/javascript'>window.onload=function(){document.forms['payment_post'].submit()};</script>");
+        return form.toString();
     }
-
 }
