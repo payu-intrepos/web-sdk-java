@@ -48,7 +48,7 @@ PayuClient payuClient = PayuClient.init("KEY", "SALT", PayuClient.Environment.TE
 ## Documentation for various Methods
  Method                                                                                                           |  Description
 |------------------------------------------------------------------------------------------------------------------| -------------
-| [**generatePaymentForm**](https://github.com/payu-intrepos/web-sdk-java/blob/main/docs/generatePaymentForm.md) | Generate html form for initating payment from frontend.
+| [**generatePaymentForm**](/docs/generatePaymentForm.md) | Generate html form for initating payment from frontend.
 | [**verifyPayment**](https://github.com/payu-intrepos/web-sdk-java/blob/main/docs/verifyPayment.md) | Provides the details of a transaction
 | [**getTransactionDetails**](https://github.com/payu-intrepos/web-sdk-java/blob/main/docs/getTransactionDetails.md)| Provides the details of a transactions for a specfic timeperiod
 | [**validateVPA**](https://github.com/payu-intrepos/web-sdk-java/blob/main/docs/validateVPA.md)       | Used to validate VPA of a user.
