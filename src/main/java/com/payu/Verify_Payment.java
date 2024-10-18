@@ -19,7 +19,7 @@ public class Verify_Payment {
 
         try {
 
-            URL url = new URL("https://secure.payu.in/merchant/postservice.php?form=2");
+            URL url = new URL("https://info.payu.in/merchant/postservice.php?form=2");
             if(this.environment.equalsIgnoreCase("Test"))
             {
                 url = new URL("https://test.payu.in/merchant/postservice.php?form=2");
@@ -28,7 +28,7 @@ public class Verify_Payment {
             }
             else if(this.environment.equalsIgnoreCase("Production"))
             {
-                url = new URL("https://secure.payu.in/merchant/postservice.php?form=2");
+                url = new URL("https://info.payu.in/merchant/postservice.php?form=2");
 //            System.out.println("This is Production environment");
 
             }
