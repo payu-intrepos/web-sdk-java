@@ -77,7 +77,7 @@ public class Hasher extends BasePayu {
         String udf5 = params.getUdf5();
         String additionalCharges = params.getAdditionalCharges();
         String template = "%s|%s||||||%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s";
-        String str = String.format(template, salt, status, udf1, udf2, udf3, udf4, udf5, params.getEmail(), params.getFirstName(), params.getProductInfo(), params.getAmount(), params.getTxnId(), key);
+        String str = String.format(template, salt, status, udf5, udf4, udf3, udf2, udf1, params.getEmail(), params.getFirstName(), params.getProductInfo(), params.getAmount(), params.getTxnId(), key);
         if (additionalCharges != null) {
             StringBuilder string = new StringBuilder(additionalCharges);
             string.append("|");
